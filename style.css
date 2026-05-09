@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg-0: #071a1a;
+    --bg-1: #0b2a2a;
+    --card: rgba(255, 255, 255, 0.08);
+    --card-hover: rgba(255, 255, 255, 0.12);
+    --text: rgba(255, 255, 255, 0.92);
+    --muted: rgba(255, 255, 255, 0.72);
+    --border: rgba(255, 255, 255, 0.14);
+    --accent: #2ee6b6;
+    --accent-dark: #1db88e;
+    --shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+    --radius: 18px;
+}
+
+body{
+    min-height: 100vh;
+    background:
+        radial-gradient(900px 500px at 15% 10%, rgba(46, 230, 182, 0.22), transparent 55%),
+        radial-gradient(850px 520px at 85% 15%, rgba(66, 170, 255, 0.16), transparent 55%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-0));
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.55;
+    padding: 28px 18px 56px;
+    animation: pageFadeIn 0.35s ease both;
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+h1{
+    font-family: 'Bebas Neue', Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-size: clamp(44px, 5vw, 78px);
+    letter-spacing: 0.5px;
+    line-height: 0.95;
+    margin: 0;
+}
+
+.lead{
+    font-size: 20px;
+    color: var(--text);
+}
+
+.container{
+    max-width: 980px;
+    margin: 20px auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 22px 22px;
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+    transition: background 0.2s ease;
+}
+.container:hover{
+    background: var(--card-hover);
+}
+h3{
+    font-size: 22px;
+    letter-spacing: 0.2px;
+    padding-bottom: 12px;
+}
+h2{
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--accent);
+}
+.subjects{
+    display: list-item;
+    margin-left: 1.25rem;
+    padding: 4px 0;
+    color: var(--muted);
+}
+
+/* ── Hamburger button ── */
+.menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    width: 58px;
+    height: 58px;
+    cursor: pointer;
+    z-index: 1300;
+    padding: 0;
+    border-radius: 16px;
+    transition: background 0.2s ease;
+    align-items: center;
+    flex-shrink: 0;
+}
+.menu-btn:hover{
+    background: rgba(255, 255, 255, 0.08);
+}
+.menu-btn:focus-visible{
+    outline: 3px solid rgba(46, 230, 182, 0.55);
+    outline-offset: 3px;
+}
+
+.menu-btn span {
+    display: block;
+    height: 4px;
+    width: 34px;
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.2s ease, background 0.2s ease;
+    transform-origin: center;
+}
+
+/* Hamburger → X animation */
+.menu-btn.open span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.menu-btn.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.menu-btn.open span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* ── Overlay backdrop ── */
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+.menu-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ── Sidebar menu ── */
+.menu {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 260px;
+    height: 100%;
+    background: rgba(10, 18, 20, 0.86);
+    border-right: 1px solid rgba(255, 255, 255, 0.10);
+    color: white;
+    padding-top: 60px;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 18px 0 60px rgba(0,0,0,0.45);
+    backdrop-filter: blur(12px);
+    z-index: 1200;
+}
+
+.menu a {
+    display: block;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.88);
+    transition: background 0.2s ease, border-left-color 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: rgba(46, 230, 182, 0.7);
+}
+
+.menu.active {
+    left: 0;
+}
+
+.menu a.active{
+    background: rgba(255, 255, 255, 0.10);
+    border-left-color: var(--accent);
+    font-weight: 600;
+}
+
+/* ── Page heading ── */
+.heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 980px;
+    margin: 0 auto 10px;
+}
+
+p{
+    color: var(--muted);
+    margin-top: 6px;
+}
+.about{
+    color: var(--text);
+}
+
+ul{
+    margin: 10px 0 0 1.25rem;
+    padding: 0;
+    color: var(--muted);
+}
+
+ol{
+    margin: 10px 0 0 1.25rem;
+    padding: 0;
+    color: var(--muted);
+}
+
+li{
+    margin: 6px 0;
+}
+
+/* ── Buttons ── */
+button, .btn{
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.10);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: 12px;
+    font: inherit;
+    cursor: pointer;
+    transition: transform 0.08s ease, background 0.2s ease, border-color 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+button:hover, .btn:hover{
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(46, 230, 182, 0.45);
+}
+button:active, .btn:active{
+    transform: translateY(1px);
+}
+
+/* Primary CTA button */
+.btn-primary {
+    background: var(--accent);
+    color: #071a1a;
+    border-color: var(--accent);
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-size: 16px;
+    margin-top: 14px;
+}
+.btn-primary:hover {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+    color: #071a1a;
+}
+
+/* ── Inputs ── */
+textarea,
+input{
+    background: rgba(0, 0, 0, 0.25);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    padding: 10px 12px;
+    font: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+input[type="password"]{
+    min-width: 220px;
+}
+textarea{
+    resize: none;
+    vertical-align: middle;
+    height: 42px;
+    line-height: 1.2;
+    overflow: hidden;
+}
+textarea:focus,
+input:focus{
+    border-color: rgba(46, 230, 182, 0.55);
+    box-shadow: 0 0 0 4px rgba(46, 230, 182, 0.15);
+}
+
+/* Password feedback */
+.password-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+.password-msg {
+    font-size: 14px;
+    margin-top: 8px;
+    min-height: 20px;
+    transition: opacity 0.2s ease;
+}
+.password-msg.error  { color: #ff6b6b; }
+.password-msg.success{ color: var(--accent); }
+
+/* ── Pricing cards ── */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.pricing-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 18px;
+    text-align: center;
+    transition: background 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+    position: relative;
+}
+.pricing-card:hover {
+    background: rgba(255, 255, 255, 0.11);
+    transform: translateY(-3px);
+    border-color: rgba(46, 230, 182, 0.35);
+}
+.pricing-card.best-value {
+    border-color: var(--accent);
+    background: rgba(46, 230, 182, 0.08);
+}
+.pricing-card .badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: #071a1a;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.pricing-card .card-lessons {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    margin-top: 0;
+}
+.pricing-card .card-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    color: var(--text);
+    line-height: 1;
+    margin: 0;
+}
+.pricing-card .card-per {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+/* ── Mobile ── */
+@media (max-width: 520px){
+    body{
+        padding: 22px 14px 44px;
+    }
+    .container{
+        padding: 18px 16px;
+        border-radius: 16px;
+    }
+    .menu{
+        width: 78vw;
+        left: calc(-78vw - 10px);
+    }
+    .menu-btn{
+        width: 52px;
+        height: 52px;
+    }
+    .menu-btn span{
+        width: 30px;
+    }
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+}
