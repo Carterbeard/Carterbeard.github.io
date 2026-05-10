@@ -459,12 +459,11 @@ a { color: inherit; text-decoration: none; }
 .menu-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.65);
     z-index: 1100;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    backdrop-filter: blur(3px);
 }
 
 .menu-overlay.active {
