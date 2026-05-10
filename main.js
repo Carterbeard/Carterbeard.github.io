@@ -23,10 +23,8 @@ function toggleMenu() {
     sideMenu.classList.contains('active') ? closeMenu() : openMenu();
 }
 
-// Close on overlay click
 overlay?.addEventListener('click', closeMenu);
 
-// Close on Escape key
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && sideMenu.classList.contains('active')) closeMenu();
 });
@@ -37,7 +35,7 @@ const passwordBtn   = document.getElementById('passwordEnter');
 const passwordMsg   = document.getElementById('passwordMsg');
 
 if (passwordBtn) {
-    const CORRECT = 'tutor2024'; // Change this to your real password
+    const CORRECT = 'tutor2024';
 
     function checkPassword() {
         const val = passwordInput.value.trim();
@@ -49,8 +47,7 @@ if (passwordBtn) {
         if (val === CORRECT) {
             showMsg('✓ Access granted — resources loading…', 'success');
             passwordInput.disabled = true;
-            passwordBtn.disabled  = true;
-            // TODO: redirect or reveal resources here
+            passwordBtn.disabled   = true;
         } else {
             showMsg('Incorrect password. Please try again.', 'error');
             passwordInput.value = '';
