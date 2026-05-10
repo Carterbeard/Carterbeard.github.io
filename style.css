@@ -363,9 +363,8 @@ a { color: inherit; text-decoration: none; }
     color: var(--accent);
     letter-spacing: 1px;
     line-height: 1;
-    flex-shrink: 0;
-    width: 56px;
-    text-align: right;
+    flex: 0 0 56px;
+    text-align: left;
 }
 
 /* ── Contact details ── */
