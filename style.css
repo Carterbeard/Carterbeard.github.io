@@ -544,12 +544,28 @@ a { color: inherit; text-decoration: none; }
     width: 26px;
     background: rgba(255, 255, 255, 0.85);
     border-radius: 2px;
-    transform-origin: center;
+    transform-origin: left center; 
+    transition: all 0.3s ease;
 }
 
-.menu-close span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
-.menu-close span:nth-child(2) { opacity: 0; }
-.menu-close span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+/* Top Barb */
+.menu-close span:nth-child(1) { 
+    /* Lower translateY value to keep the tip connected */
+    transform: translateY(9px) rotate(-40deg) scaleX(0.7); 
+}
+
+/* Arrow Shaft */
+.menu-close span:nth-child(2) { 
+    opacity: 1;
+    /* Minimal shift to plug into the head */
+    transform: translateX(-0.3px) scaleX(1.15);
+}
+
+/* Bottom Barb */
+.menu-close span:nth-child(3) { 
+    /* Match the top bar's vertical squeeze */
+    transform: translateY(-9px) rotate(40deg) scaleX(0.7); 
+}
 
 /* ── Buttons ── */
 .btn {
